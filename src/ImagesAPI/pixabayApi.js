@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const API_KEY = `35854690-4159d3cc03f107c66dd11036d`;
 const API_URL = 'https://pixabay.com/api/';
-export const LIMIT = 12;
+export const PER_PAGE = 12;
 
-export const fetchPhotos = async searchValue => {
+export const fetchPhotos = async (searchValue, currentPage) => {
   try {
     const objects = await axios.get(API_URL, {
       params: {
@@ -13,8 +13,8 @@ export const fetchPhotos = async searchValue => {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
-        page: 1,
-        per_page: LIMIT,
+        page: currentPage,
+        per_page: PER_PAGE,
       },
     });
     const images = objects.data;

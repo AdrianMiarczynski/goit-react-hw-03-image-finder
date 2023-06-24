@@ -1,6 +1,6 @@
 import SearchBar from './Searchbar/searchbar';
 import Button from './Button/button';
-import { fetchPhotos, LIMIT } from '../ImagesAPI/pixabayApi';
+import { fetchPhotos, PER_PAGE } from '../ImagesAPI/pixabayApi';
 import { Component } from 'react';
 import Loader from './Leader/leader';
 import ImagesGallery from './Imagegallery/imagegallery';
@@ -51,12 +51,12 @@ export class App extends Component {
       this.setState({ isLoading: true });
       const object = await fetchPhotos(searchValue, currentPage);
       const newImages = object.hits;
-      const totalPagesOfImages = Math.ceil(object.totalHits / LIMIT);
+      const imagesTotal = Math.ceil(object.totalHits / PER_PAGE);
 
       this.setState(prevState => ({
         images: [...prevState.images, ...newImages],
         isLoading: false,
-        totalPages: totalPagesOfImages,
+        totalPages: imagesTotal,
       }));
     } catch (error) {
       this.setState({
