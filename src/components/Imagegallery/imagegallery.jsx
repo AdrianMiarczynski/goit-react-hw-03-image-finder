@@ -1,4 +1,6 @@
 import ImagesGalleryItem from '../Imagegaleryitem/imagegaleryitem';
+import css from './imagegallery.module.css';
+import PropTypes from 'prop-types';
 
 const { Component } = require('react');
 
@@ -6,11 +8,9 @@ class ImagesGallery extends Component {
   render() {
     const { images } = this.props;
     return (
-      <ul
-      // className="gallery"
-      >
+      <ul className={css.ImageGallery}>
         {images.map(image => {
-          const { id, webformatURL, tags, largeImageURL } = image;
+          const { id, webformatURL, tags } = image;
           return (
             <ImagesGalleryItem
               key={id}
@@ -25,3 +25,7 @@ class ImagesGallery extends Component {
   }
 }
 export default ImagesGallery;
+
+ImagesGallery.propTypes = {
+  images: PropTypes.array.isRequired,
+};

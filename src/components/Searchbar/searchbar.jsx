@@ -1,28 +1,17 @@
+import css from './searchbar.module.css';
+import PropTypes from 'prop-types';
 const { Component } = require('react');
-
 class SearchBar extends Component {
   render() {
     return (
-      <header
-      // className="searchbar"
-      >
-        <form
-          onSubmit={this.props.getData}
-          // classNames="form"
-        >
-          <button
-            type="submit"
-            // classNamess="button"
-          >
-            <span
-            // classNames="button-label"
-            >
-              Search
-            </span>
+      <header className={css.Searchbar}>
+        <form onSubmit={this.props.getData} className={css.SearchForm}>
+          <button type="submit" className={css['SearchForm-button']}>
+            <span className={css['SearchForm-button-label']}>Search</span>
           </button>
 
           <input
-            // classNames="input"
+            className={css['SearchForm-input']}
             type="text"
             autoComplete="off"
             name="search"
@@ -35,3 +24,7 @@ class SearchBar extends Component {
   }
 }
 export default SearchBar;
+
+SearchBar.propTypes = {
+  getData: PropTypes.func.isRequired,
+};
