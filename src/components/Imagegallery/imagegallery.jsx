@@ -10,13 +10,14 @@ class ImagesGallery extends Component {
     return (
       <ul className={css.ImageGallery}>
         {images.map(image => {
-          const { id, webformatURL, tags } = image;
+          const { id, webformatURL, tags, largeImageURL } = image;
           return (
             <ImagesGalleryItem
               key={id}
               id={id}
               webformatURL={webformatURL}
               tags={tags}
+              largeImageURL={largeImageURL}
             />
           );
         })}

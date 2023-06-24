@@ -3,9 +3,9 @@ const { Component } = require('react');
 
 class Modal extends Component {
   render() {
-    const { largeImageURL, modalClose, tags } = this.state;
+    const { largeImageURL, modalClose, tags } = this.props;
     return (
-      <div onClick={modalClose} classNames={css.Overlay}>
+      <div onClick={modalClose} className={css.Overlay}>
         <div className={css.Modal}>
           <img src={largeImageURL} alt={tags} />
         </div>

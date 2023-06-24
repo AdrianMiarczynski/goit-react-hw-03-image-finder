@@ -1,9 +1,9 @@
 import SearchBar from './Searchbar/searchbar';
 import Button from './Button/button';
-import ImageGallery from './Imagegallery/imagegallery';
 import { fetchPhotos, LIMIT } from '../ImagesAPI/pixabayApi';
 import { Component } from 'react';
 import Loader from './Leader/leader';
+import ImagesGallery from './Imagegallery/imagegallery';
 
 export class App extends Component {
   state = {
@@ -71,7 +71,7 @@ export class App extends Component {
     return (
       <div className="App">
         <SearchBar getData={this.getData} />
-        {images.length !== 0 && <ImageGallery images={images} />}
+        {images.length !== 0 && <ImagesGallery images={images} />}
         {isLoading ? <Loader /> : true}
         {images.length !== 0 && currentPage !== totalPages && (
           <Button nextPage={this.nextPage} />

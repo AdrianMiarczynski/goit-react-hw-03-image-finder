@@ -2,36 +2,57 @@ import Modal from 'components/Modal/modal';
 import css from './imagegaleryitem.module.css';
 import PropTypes from 'prop-types';
 
-const { Component } = require('react');
+const { useState } = require('react');
 
-class ImagesGalleryItem extends Component {
-  state = {
-    isOpen: false,
+const ImagesGalleryItem = ({ id, webformatURL, largeImageURL, alt }) => {
+  const [isOpen, isOpenModal] = useState(false);
+  const modalOpen = () => {
+    isOpenModal(true);
   };
-  // modalOpen = () => {
-  //   this.setState({ isOpen: true });
-  // };
+  const modalClose = () => {
+    isOpenModal(false);
+  };
+  return (
+    <>
+      <li onClick={modalOpen} key={id} className={css.ImageGalleryItem}>
+        <img
+          src={webformatURL}
+          alt={alt}
+          className={css['ImageGalleryItem-image']}
+        />
+      </li>
+      {isOpen && (
+        <Modal largeImageURL={largeImageURL} modalClose={modalClose} />
+      )}
+    </>
+  );
+};
 
-  // modalClose = () => {
-  //   this.setState({ isOpen: false });
-  // };
+// class ImagesGalleryItem extends Component {
+// modalOpen = () => {
+//   this.setState({ isOpen: true });
+// };
 
-  render() {
-    const { id, webformatURL, alt, largeImageURL } = this.props;
-    return (
-      <>
-        <li onClick={this.modalOpen} key={id} className={css.ImageGalleryItem}>
-          <img
-            src={webformatURL}
-            alt={alt}
-            className={css['ImageGalleryItem-image']}
-          />
-        </li>
-        {this.state.isOpen && <Modal largeImageURL={largeImageURL} />}
-      </>
-    );
-  }
-}
+// modalClose = () => {
+//   this.setState({ isOpen: false });
+// };
+
+// render() {
+//     const { id, webformatURL, alt, largeImageURL } = this.props;
+//     return (
+// <>
+//   <li onClick={this.modalOpen} key={id} className={css.ImageGalleryItem}>
+//     <img
+//       src={webformatURL}
+//       alt={alt}
+//       className={css['ImageGalleryItem-image']}
+//     />
+//   </li>
+//   {this.state.isOpen && <Modal largeImageURL={largeImageURL} />}
+// </>
+//     );
+//   }
+// }
 export default ImagesGalleryItem;
 
 ImagesGalleryItem.propTypes = {
